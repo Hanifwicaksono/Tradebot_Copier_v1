@@ -1,13 +1,17 @@
 import time
 import MetaTrader5 as mt5
 
-from signal_manager import load_signals, update_signal
+from signal_manager import load_signals, update_signal, clean_signals
 from mt5_executor import open_trade
 
 
 def monitor_signals():
 
     while True:
+        try:
+            clean_signals()
+        except Exception as e:
+            print(f"Error cleaning signals: {e}")
 
         signals = load_signals()
 
@@ -39,7 +43,7 @@ def monitor_signals():
                 if price >= tp1:
 
                     signal["status"] = "EXPIRED"
-                    update_signal(i, signal)
+                    update_signal(signal)
 
                     print("SIGNAL EXPIRED (TP SUDAH TERSENTUH)")
                     continue
@@ -51,7 +55,7 @@ def monitor_signals():
 
                     if result:
                         signal["status"] = "EXECUTED"
-                        update_signal(i, signal)
+                        update_signal(signal)
 
                         print("SIGNAL DIEKSEKUSI")
 
@@ -65,7 +69,7 @@ def monitor_signals():
                 if price <= tp1:
 
                     signal["status"] = "EXPIRED"
-                    update_signal(i, signal)
+                    update_signal(signal)
 
                     print("SIGNAL EXPIRED (TP SUDAH TERSENTUH)")
                     continue
@@ -76,7 +80,7 @@ def monitor_signals():
 
                     if result:
                         signal["status"] = "EXECUTED"
-                        update_signal(i, signal)
+                        update_signal(signal)
 
                         print("SIGNAL DIEKSEKUSI")
 
