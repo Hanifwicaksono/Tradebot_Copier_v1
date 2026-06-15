@@ -20,7 +20,7 @@ if os.path.exists("config.json"):
 
 api_id = config_data.get("api_id", 12345678)
 api_hash = config_data.get("api_hash", "your_api_hash_here")
-GROUP_ID = config_data.get("group_id", -100xxxxxxxxxx)
+GROUP_ID = config_data.get("group_id", -1001234567890)
 
 client = TelegramClient("session_hanif", api_id, api_hash)
 
