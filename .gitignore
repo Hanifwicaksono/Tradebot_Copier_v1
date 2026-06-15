@@ -1,0 +1,17 @@
+# Local config containing sensitive credentials
+config.json
+
+# Telegram session files
+*.session
+*.session-journal
+
+# Active trade signals queue
+active_signals.json
+
+# Python caching
+__pycache__/
+*.pyc
+
+# IDE configurations
+.idea/
+.vscode/
